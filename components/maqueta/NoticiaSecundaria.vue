@@ -79,7 +79,18 @@ export default {
         }
     }
 }
-
+@media (orientation: landscape) {
+.secundarias{
+    grid-template-columns: 1fr;
+    &__noticias{
+        display: grid;
+        grid-template-columns:1fr 1fr;
+    }
+    &__lateral{
+        display: none;
+    }
+}    
+}
 @media  (min-width: 768px){
 .secundarias{
     grid-template-columns: 2fr 1fr;

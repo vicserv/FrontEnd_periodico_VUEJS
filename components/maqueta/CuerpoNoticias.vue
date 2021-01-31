@@ -47,6 +47,30 @@ export default {
     
 }
 
+@media (orientation: landscape) {
+ .cuerpo{
+        display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr;
+    
+    grid-template-areas: "primera primera "
+                         "primera primera "
+                         "segunda tercera "
+                         ". .  ";
+
+    &__nota:nth-child(1){
+        grid-area: primera;
+    }
+    &__nota:nth-child(2){
+        grid-area: segunda;
+    }
+    &__nota{
+        min-height: 150px;
+    }
+
+}
+}
+
 @media  (min-width: 768px){
 .cuerpo{
         display: grid;

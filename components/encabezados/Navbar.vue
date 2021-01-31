@@ -200,9 +200,6 @@ grid-template-areas: "logo     hamburguesa"
 .nuxt-link-active.item{
     color:#ccceec
  }
-.menu__logo:hover{
-    opacity: 50%;
-}
 
 </style>
 
