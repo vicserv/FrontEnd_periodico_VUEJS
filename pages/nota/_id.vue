@@ -104,9 +104,7 @@ export default {
 
 
 <style lang="scss" scoped>
-.nose{
-  
-}
+
 .nota{
   width: 85%;
   margin: 0 auto;
@@ -169,9 +167,6 @@ export default {
 
 }
 }
-    img{
-        
-        }
 
 
 </style>
