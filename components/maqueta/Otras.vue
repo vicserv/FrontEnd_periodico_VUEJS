@@ -1,6 +1,6 @@
 <template>
 
-<div v-if="noticias.length > 0">
+<div v-if="noticias.length > 0" class="otras">
     <TitulosVue :titulo="'Más noticias'"/>
     <NoticiaSecundariaVue :noticias="noticias" :resultados="resultados" @accion="paginacion"/>
 </div>     
@@ -60,3 +60,7 @@ methods:{
   },
 }
 </script>
+
+<style lang="scss" scoped>
+
+</style>

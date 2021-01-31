@@ -48,7 +48,7 @@ export default {
 <style lang="scss" scoped>
 
 .buscado{
-    
+    width: 100vw;
     text-decoration: none;
     color: white;
 

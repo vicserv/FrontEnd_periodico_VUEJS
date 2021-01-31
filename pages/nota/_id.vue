@@ -1,17 +1,17 @@
 <template lang="pug">
-.contenedor
+.nose
   .nota(v-if="noticia.imagen")
-      .nota__principal
-          .nota__principal__titulo
-            h2 {{noticia.titulo}}
-          .nota__principal__imagen
-            img(:src="'https://panel.deoaxaca.online' + noticia.imagen.url ")
-          .nota__principal__cuerpo
-            .nota__principal__cuerpo__compartir
-              .sticky
-                CompartirVue(:titulo="noticia.titulo" :fecha="format_date(noticia.published_at)" @disminuir="fuente_size(1)" @agrandar="fuente_size(0)")
-            .markdown(v-html="$md.render(noticia.nota)" :style="`font-size: ${fuente}rem;`")
-      NoticiasLateralVue
+    .nota__principal
+        .nota__principal__titulo
+          h2 {{noticia.titulo}}
+        .nota__principal__imagen
+          img(:src="'https://panel.deoaxaca.online' + noticia.imagen.url ")
+        .nota__principal__cuerpo
+          .nota__principal__cuerpo__compartir
+            .sticky
+              CompartirVue(:titulo="noticia.titulo" :fecha="format_date(noticia.published_at)" @disminuir="fuente_size(1)" @agrandar="fuente_size(0)")
+          .markdown(v-html="$md.render(noticia.nota)" :style="`font-size: ${fuente}rem;`")
+    NoticiasLateralVue
   OtrasVue
 </template>
 
@@ -103,25 +103,27 @@ export default {
 </script>
 
 
-<style lang="scss">
+<style lang="scss" scoped>
+.nose{
+  
+}
 .nota{
-    width: 85%;
-    margin: 10px auto;
-    display: grid;
-    grid-template-columns: 1fr;
-    grid-gap: 10px;
+  width: 85%;
+  margin: 0 auto;
+     
+     margin: 0 auto;
 
     &__principal{
-      display: grid;
-      grid-template-columns: 1fr;
-      align-items: center;
+
       padding: 0 20px;
+     
       
       &__titulo{
           text-align: center;
           margin-bottom: 20px;
           color: rgb(87, 87, 87);
        }
+
       &__imagen{
          margin: 0 auto;
          width: 90%;
@@ -129,11 +131,25 @@ export default {
         width: 100%;
         height: auto;
         border-radius: 10px;
-        }
-      }
-      &__cuerpo{
+        }}
+    }
+
+      
+}
+@media  (min-width: 992px){
+.nota{
+    display: grid;
+      grid-template-rows: 1fr;
+      grid-template-columns: 3fr 1fr;
+    &__principal{
+      display: grid;
+      grid-template-rows: 1fr;
+      grid-template-columns: 1fr;
+      align-items: center;
+
+                &__cuerpo{
         display: grid;
-        grid-template-columns: 1fr;
+        grid-template-columns: auto 1fr;
         margin: 40px 0;
 
       &__compartir{
@@ -147,98 +163,15 @@ export default {
         }
       }
       }
-    }
-}
-@media  (min-width: 992px){
-.nota{
-      display: grid;
-    grid-template-columns: 3fr 1fr;
-    &__principal{
-      &__cuerpo{
-        display: grid;
-        grid-template-columns: auto 1fr;
-      }
-    }
-}
-}
-.markdown{
-  text-align: justify;
-  line-height: 1.5;
 
-  p{
-    margin: 1rem 0;
-  }
-  img{
-    max-width: 90%;
-    margin: auto;
-    display: block;
-    padding: 8px;
-  }
-  iframe{
-  display: block;
-  width:100%;
-  padding: 0 auto;
-  margin: 10px auto;
-  
-  }
-  h1, h2, h3, h4, h5{
-  font-family: Georgia, 'Times New Roman', Times, serif;
-  text-align: center;
-  color: rgb(2, 2, 58);
-  margin: 1rem 0;
     }
-  
-  blockquote {
-  display:block;
-  background: #fff;
-  padding: 15px 20px 15px 45px;
-  margin: 0 0 20px;
-  position: relative;
-  
-  /*Font*/
-  font-family: Georgia, serif;
 
-  line-height: 1.2;
-  color: #666;
-  text-align: justify;
-  
-  /*Borders - (Optional)*/
-  border-left: 15px solid $color-secundario;
-  border-right: 2px solid $color-principal;
-  
-  /*Box Shadow - (Optional)*/
-  -moz-box-shadow: 2px 2px 15px #ccc;
-  -webkit-box-shadow: 2px 2px 15px #ccc;
-  box-shadow: 2px 2px 15px #ccc;
-}
-blockquote::before{
-  content: "\201C"; /*Unicode for Left Double Quote*/
-  
-  /*Font*/
-  font-family: Georgia, serif;
-  font-size: 60px;
-  font-weight: bold;
-  color: #999;
-  
-  /*Positioning*/
-  position: absolute;
-  left: 10px;
-  top:5px;
-}
-a {
-  color: red;
-  text-decoration: none;
-  font-weight: 600;
-}
 
-blockquote em{
-  font-style: italic;
 }
-a:hover{
-  opacity: 50%;
-  text-decoration: none;
-  font-weight: 600;
 }
-  
-}
+    img{
+        
+        }
+
+
 </style>

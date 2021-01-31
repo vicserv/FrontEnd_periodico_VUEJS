@@ -27,6 +27,7 @@ export default {
     grid-template-rows: auto 1fr;
     grid-gap: 0.5rem;
     margin: 0 10px;
+    
 
 
 }
