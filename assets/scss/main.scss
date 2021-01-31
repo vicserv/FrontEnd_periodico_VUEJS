@@ -1,0 +1,8 @@
+$color-principal : #CE1531;
+$color-claro: white;
+$color-secundario: #961427;
+
+@mixin centrar-grid {
+align-self: center;
+justify-self: center;
+}
