@@ -35,9 +35,14 @@ export default {
   ],
   pwa: {
     manifest: {
-      name: 'DEOAXACA APP',
+
       theme_color: '#CE1531',
-    }
+    },
+    meta: { 
+      ogType : false , 
+      ogTitle : false , 
+      ogDescription : false 
+     }
   },
 
   // Modules: https://go.nuxtjs.dev/config-modules
