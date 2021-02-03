@@ -85,6 +85,6 @@ export default {
   }
 
   .hola:hover{
-      opacity: 50%;
+      opacity: 90%;
   }
 </style>

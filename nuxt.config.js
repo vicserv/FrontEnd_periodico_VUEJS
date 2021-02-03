@@ -3,7 +3,7 @@ export default {
   head: {
     title: 'DE OAXACA - DIARIO ESTATAL',
     htmlAttrs: {
-      lang: 'en'
+      lang: 'es'
     },
     meta: [
       { charset: 'utf-8' },
@@ -35,13 +35,15 @@ export default {
   ],
   pwa: {
     manifest: {
-
+      name: 'DE OAXACA APP',
       theme_color: '#CE1531',
     },
     meta: { 
       ogType : false , 
       ogTitle : false , 
-      ogDescription : false 
+      ogDescription : false,
+      ogImage : false,
+      lang : 'es'
      }
   },
 

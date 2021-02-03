@@ -64,9 +64,7 @@ export default {
     padding: 10px;
     cursor: pointer;
     }
-    button:hover{
-        opacity: 50%;
-    }
+
 
 }
 .compartir{
