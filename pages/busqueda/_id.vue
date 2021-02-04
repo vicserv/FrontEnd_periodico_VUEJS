@@ -22,12 +22,12 @@ export default {
     noticias: [],
     pagina: 0,
     resultados: false,
-    urlbusqueda: `https://panel.deoaxaca.online/noticias?titulo_contains=`
+    urlbusqueda: `https://panel.deoaxaca.online/noticias?nota_contains=`
   }
 },
 computed:{
  url(){
-      return `${this.urlbusqueda}${this.$route.params.id}&_start=${this.pagina}&_limit=3`;
+      return `${this.urlbusqueda}${this.$route.params.id}&_start=${this.pagina}&_limit=12&_sort=id:desc`;
     }
 },
 created(){
@@ -41,7 +41,7 @@ methods:{
     
        paginacion() {
         setTimeout(() => {
-        this.pagina = (this.pagina + Number(3));
+        this.pagina = (this.pagina + Number(12));
         
         
          axios

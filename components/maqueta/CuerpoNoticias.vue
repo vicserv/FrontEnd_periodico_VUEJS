@@ -5,7 +5,7 @@
     TarjetaNoticiasVue.cuerpo__nota(v-for="(item, index) in principales" :key="index" 
                     :titulo="item.titulo"
                     :categoria="item.categorias[0].titulo"
-                    :imagen="item.imagen.url"
+                    :imagen="(!item.imagen.formats.small? item.imagen.formats.thumbnail.url : item.imagen.formats.small.url)"
                     :fecha="item.published_at"
                     :url="item.slug")
 
@@ -24,6 +24,15 @@ export default {
         principales: {},
         noticias: []
 
+    },
+    methods:{
+        imagen(medium , thumbnail){
+        if(medium === undefined){
+            return thumbnail
+        }else{
+            return medium
+        }
+    }
     }
     
 }

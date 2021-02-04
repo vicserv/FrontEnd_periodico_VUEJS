@@ -1,6 +1,6 @@
 <template lang="pug">
 .title(v-if="show.name")
-    span {{`${show.name} - ${(show.main.temp - 273.15).toFixed(1)} ºC `}}
+    span {{`${show.name.slice(0, 18)}-${Math.round(show.main.temp - 273.15)} ºC `}}
     img(:src="'https://openweathermap.org/img/wn/'+ show.weather[0].icon + '@2x.png'" style="height: 1rem; ") 
 </template>
 

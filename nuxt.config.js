@@ -31,8 +31,12 @@ export default {
 
   // Modules for dev and build (recommended): https://go.nuxtjs.dev/config-modules
   buildModules: [
-    '@nuxtjs/pwa'
+    '@nuxtjs/pwa',
+    '@nuxtjs/google-analytics'
   ],
+  googleAnalytics: {
+    id: 'G-2HSKQG0S2G' // Use as fallback if no runtime config is provided
+  },
   pwa: {
     manifest: {
       name: 'DE OAXACA APP',

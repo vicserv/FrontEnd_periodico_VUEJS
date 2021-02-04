@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@nuxtjs/axios": "^5.12.5",
+    "@nuxtjs/google-analytics": "^2.4.0",
     "@nuxtjs/markdownit": "^2.0.0",
     "@nuxtjs/pwa": "^3.3.5",
     "core-js": "^3.8.2",
@@ -22,6 +23,7 @@
     "vue-carousel": "^0.18.0",
     "vue-easy-carousel": "^1.2.0",
     "vue-easy-slider": "^5.3.4",
+    "vue-pwa-install": "^1.1.0",
     "vue-slick-carousel": "^1.0.6",
     "vue-social-sharing": "^3.0.4"
   },

@@ -1,6 +1,6 @@
 <template lang="pug">
 .title(v-if="show.titulo")
-    span {{`${show.titulo}`}}
+    router-link.show(:to="'/nota/'+ show.slug") {{`${show.titulo}`}}
 </template>
 
 <script>
@@ -16,13 +16,14 @@ data() {
 },
 computed:{
     url(){
-      return `https://panel.deoaxaca.online/noticias?_sort=vistas:desc&_limit=4&_start=${this.pagina}`;
+      return `https://panel.deoaxaca.online/noticias?_sort=id:desc&_limit=6&_start=${this.pagina}`;
     }
   },
     created(){
     this.count();
     this.obtenerDatos();
   },
+  
 methods:{
       count() {
       let i = 0;
@@ -34,7 +35,7 @@ methods:{
     },
       async obtenerDatos(){
       const respuesta = await axios.get(this.url);
-      this.noticias = respuesta.data;
+      this.noticias = respuesta.data
     }
 },
 
@@ -53,5 +54,9 @@ methods:{
     
     text-align:left;
     right: 0;
+}
+.show{
+  text-decoration: none;
+  color: white;
 }
 </style>

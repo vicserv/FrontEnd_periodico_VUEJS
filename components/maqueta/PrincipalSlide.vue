@@ -4,7 +4,7 @@ client-only
     Slider-item( 
         v-for="(item, index) in principales"
         :key="index"
-        :style="{'background-image': `url(https://panel.deoaxaca.online${item.imagen.url})`}")
+        :style="{'background-image': `url(https://panel.deoaxaca.online${!item.imagen.formats.small? item.imagen.formats.thumbnail.url : item.imagen.formats.small.url})`}")
       router-link.tarjeta__titulo(:to="'/nota/'+ item.slug") {{item.titulo}}
       .tarjeta__fecha
         .tarjeta__fecha__dia {{dia(item.published_at)}}

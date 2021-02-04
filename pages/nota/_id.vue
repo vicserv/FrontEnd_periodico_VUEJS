@@ -5,7 +5,7 @@
         .nota__principal__titulo
           h2 {{noticia.titulo}}
         .nota__principal__imagen
-          img(:src="'https://panel.deoaxaca.online' + noticia.imagen.url ")
+          img(:src="'https://panel.deoaxaca.online' + (!noticia.imagen.formats.small? noticia.imagen.url : noticia.imagen.formats.small.url)")
         .nota__principal__cuerpo
           .nota__principal__cuerpo__compartir
             .sticky
@@ -43,9 +43,9 @@ export default {
       {
         hid: 'description',
         name: 'description',
-        content: this.fetchData.titulo
+        content: 'DE OAXACA.ONLINE -' + this.fetchData.titulo,
       },
-      { hid: 'og:image', property: 'og:image', content: 'https://panel.deoaxaca.online' + this.fetchData.imagen.url }
+      { hid: 'og:image', property: 'og:image', content: 'https://panel.deoaxaca.online' + (!this.fetchData.imagen.formats.small? this.fetchData.imagen.formats.thumbnail.url : this.fetchData.imagen.formats.small.url) }
       
     ],
       }

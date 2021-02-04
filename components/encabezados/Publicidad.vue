@@ -3,7 +3,8 @@
     SlidePublicidadVue.carru
     .publicidad__redes
         .publicidad__redes__titulo SIGUENOS
-        i.fab.fa-facebook-f
+        a(href="https://www.facebook.com/deoaxacadiario" target="_blank")
+            i.fab.fa-facebook-f
         i.fab.fa-twitter
         i.fab.fa-instagram
 

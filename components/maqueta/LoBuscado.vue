@@ -1,9 +1,11 @@
 <template lang="pug">
 .contenedor
+  .lobuscado TOP DE LA SEMANA
   router-link.buscado(v-for='(item, index) in noticias' :key='index' :to="'/nota/'+ item.slug")
     .buscado__cuerpo
       .buscado__cuerpo__titulo {{item.titulo}}
         .buscado__cuerpo__fecha {{format_date(item.published_at)}}
+        
 
 </div>
 
@@ -19,17 +21,19 @@ export default {
   data(){
     return{
     noticias: [],
-    pagina: 0
+    pagina: 0,
+    momento: ''
     }
   },
   
   computed:{
     url(){
-      return `https://panel.deoaxaca.online/noticias?_sort=vistas:desc&_limit=3&_start=${this.pagina}`;
+      return `https://panel.deoaxaca.online/noticias?published_at_gte=`;
     }
   },
   created(){
     this.obtenerDatos();
+    
   },
   methods:{
       format_date(value){
@@ -37,8 +41,9 @@ export default {
        return moment(String(value)).tz('America/Mexico_City').format('DD/MM/YY h a', '')
       }
   },
+  
     async obtenerDatos(){
-      const respuesta = await axios.get(this.url);
+      const respuesta = await axios.get(`${this.url}${moment().subtract(1, 'week').format("YYYY-MM-DDTHH:mm:ss.ssss\\Z")}&_sort=vistas:desc&_limit=3&_start=0`);
       this.noticias = respuesta.data;
     }
     }
@@ -73,5 +78,12 @@ export default {
   background: #193c66e5;
   color: rgb(255, 255, 255);
   transition: 1s; 
+}
+.lobuscado{
+  text-align: center;
+  background-color: $color-secundario;
+  color: white;
+  padding: 5px;
+  border-radius: 5px;
 }
 </style>

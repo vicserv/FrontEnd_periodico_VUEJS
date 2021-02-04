@@ -21,10 +21,10 @@ data(){
     pagina: 0,
     resultados: false
   }
-},
+}, 
 computed:{
  url(){
-      return `https://panel.deoaxaca.online/noticias?_sort=id:desc&_start=${this.pagina}&_limit=6`;
+      return `https://panel.deoaxaca.online/noticias?_sort=id:desc&_start=${this.pagina}&_limit=12`;
     }
 },
 created(){
@@ -38,7 +38,7 @@ methods:{
     
        paginacion() {
         setTimeout(() => {
-        this.pagina = (this.pagina + Number(6));
+        this.pagina = (this.pagina + Number(12));
         
         
          axios

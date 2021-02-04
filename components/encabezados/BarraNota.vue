@@ -6,7 +6,7 @@
         SlideVue
     .barra__elclima
         .barra__noticias__titulo
-            i.fas.fa-circle ULTIMO
+            i.fas.fa-circle LO ULTIMO
         SlideNotaVue
 </template>
 

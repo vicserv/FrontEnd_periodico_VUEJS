@@ -34,9 +34,9 @@ export default {
 
     computed:{
  url(){
-      return `${this.direccion}&_start=${this.pagina}&_limit=9`;
+      return `${this.direccion}&_start=${this.pagina}&_limit=12`;
     }
-},
+}, 
 created(){
   this.noticiasEncabezado();
   this.obtenerDatos();
@@ -55,7 +55,7 @@ methods:{
     
        paginacion() {
         setTimeout(() => {
-        this.pagina = (this.pagina + Number(9));
+        this.pagina = (this.pagina + Number(12));
         
         
          axios

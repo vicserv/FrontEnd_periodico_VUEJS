@@ -1,5 +1,5 @@
 <template lang="pug">
-    h1 NO SE ENCONTRÒ LA URL
+    h1 HUBO UN ERROR INTENTALO MÁS TARDE
 </template>
 
 <style lang="scss" scoped>

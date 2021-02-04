@@ -28,7 +28,10 @@ export default {
        if (value) {
          return moment(String(value)).tz('America/Mexico_City').format('MM/YY', '')
         }
-    },}
+    },
+
+    
+    }
 }
 </script>
 <style lang="scss" scoped>
