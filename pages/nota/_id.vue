@@ -43,9 +43,33 @@ export default {
       {
         hid: 'description',
         name: 'description',
-        content: 'DE OAXACA.ONLINE -' + this.fetchData.titulo,
+        content: 'De Oaxaca noticias -' + this.fetchData.titulo,
       },
-      { hid: 'og:image', property: 'og:image', content: 'https://panel.deoaxaca.online' + (!this.fetchData.imagen.formats.small? this.fetchData.imagen.formats.thumbnail.url : this.fetchData.imagen.formats.small.url) }
+          {
+      hid: 'og:type',
+      property: 'og:type',
+      content: 'website'
+    },
+      { hid: 'og:image', property: 'og:image', content: 'https://panel.deoaxaca.online' + (!this.fetchData.imagen.formats.small? this.fetchData.imagen.formats.thumbnail.url : this.fetchData.imagen.formats.small.url) },
+      { hid: 'twitter:card', name: 'twitter:card', content: 'summary_large_image' },
+      
+      {
+          hid: 'twitter:title',
+          name: 'twitter:title',
+          content: this.fetchData.titulo
+        },
+
+        {
+          hid: 'twitter:description',
+          name: 'twitter:description',
+          content: 'De Oaxaca noticias -' + this.fetchData.titulo,
+        },
+      
+      {
+          hid: 'twitter:image',
+          name: 'twitter:image',
+          content: 'https://panel.deoaxaca.online' + (!this.fetchData.imagen.formats.small? this.fetchData.imagen.formats.thumbnail.url : this.fetchData.imagen.formats.small.url) 
+        },
       
     ],
       }
@@ -92,8 +116,8 @@ export default {
         
         await axios.put(`https://panel.deoaxaca.online/noticias/${this.noticia.id}`, {
         vistas: this.noticia.vistas + 1})
-      } catch (error) {
-        console.log(error)
+      } catch (err) {
+        console.log(err)
       }
       
     }

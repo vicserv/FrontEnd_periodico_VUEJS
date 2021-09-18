@@ -1,14 +1,14 @@
 export default {
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
-    title: 'DE OAXACA - DIARIO ESTATAL',
+    title: 'De Oaxaca noticias - Diario Estatal',
     htmlAttrs: {
       lang: 'es'
     },
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-      { hid: 'description', name: 'description', content: 'DE OAXACA - DIARIO ESTATAL es un periodico digital independiente con las noticias de hoy del estado de Oaxaca, Mexico y el Mundo' },
+      { hid: 'description', name: 'description', content: 'DE OAXACA NOTICIAS - DIARIO ESTATAL, Con las últimas noticias de Oaxaca, Mexico y el mundo actualizadas al momento' },
       { hid: 'og:image', property: 'og:image', content: '/icon.png'}
     ],
     link: [
@@ -35,7 +35,7 @@ export default {
     '@nuxtjs/google-analytics'
   ],
   googleAnalytics: {
-    id: 'G-2HSKQG0S2G' // Use as fallback if no runtime config is provided
+    id: 'UA-188644501-1' // Use as fallback if no runtime config is provided
   },
   pwa: {
     manifest: {
