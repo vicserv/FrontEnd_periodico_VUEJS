@@ -9,12 +9,13 @@ export default {
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
       { hid: 'description', name: 'description', content: 'DE OAXACA NOTICIAS - DIARIO ESTATAL, Con las últimas noticias de Oaxaca, Mexico y el mundo actualizadas al momento' },
-      { hid: 'og:image', property: 'og:image', content: '/icon.png'}
+      { hid: 'og:image', property: 'og:image', content: '/deoaxaca.png'}
     ],
     link: [
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
       { rel: 'stylesheet', href: 'https://use.fontawesome.com/releases/v5.2.0/css/all.css' },
-      { rel: 'stylesheet', href: 'https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css' }
+
+  
     ]
   },
 
@@ -27,7 +28,12 @@ export default {
   ],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
-  components: true,
+  components: [
+    '~/components',
+    { path: '~/components/encabezados/', prefix: 'encabezados' },
+    { path: '~/components/maqueta/', prefix: 'maqueta' }
+  ],
+
 
   // Modules for dev and build (recommended): https://go.nuxtjs.dev/config-modules
   buildModules: [
@@ -50,6 +56,7 @@ export default {
       lang : 'es'
      }
   },
+  
 
   // Modules: https://go.nuxtjs.dev/config-modules
   modules: [
@@ -57,14 +64,34 @@ export default {
     '@nuxtjs/axios',
     '@nuxtjs/style-resources',
     '@nuxtjs/markdownit',
-    'vue-social-sharing/nuxt'
+    'vue-social-sharing/nuxt',
+    'nuxt-lazy-load',
+    '@nuxtjs/moment',
   ],
-  
+  moment: {
+    timezone: true,
+    defaultLocale: 'es',
+    defaultTimezone: 'America/Mexico_City',
+    locales: ['es'],
+    timezone: {
+      matchCountries: ['MX'],
+      startYear: 2019,
+      endYear: 2030
+    }
+  },
+
+  publicRuntimeConfig: {
+    axios: {
+      baseURL: 'https://panel.deoaxaca.online'
+    }
+  },
   styleResources: {
     scss: [
-        '~/assets/scss/main.scss',
+        '@/assets/scss/main.scss',
     ]
 },
+
+
 
 markdownit: {
   injected: true,
@@ -80,6 +107,5 @@ markdownit: {
   axios: {},
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
-  build: {
-  }
+
 }

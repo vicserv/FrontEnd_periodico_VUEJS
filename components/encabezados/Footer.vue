@@ -1,20 +1,19 @@
 <template lang="pug">
 .footer
-    .oaxaca DE OAXACA
-    .texto-chico {{'Copyright: ' + currentDateTime()}}
+    .oaxaca DE OAXACA  
+      span.texto-chico &copy {{currentDateTime()}}
+    .texto-chico Desarrollado Por: vidi.server@gmail.com
+    
 </template>
 
 <script>
-import moment from 'moment';
 export default {
-
- methods: {
+  methods: {
     currentDateTime() {
-    moment.locale("es") 
-      return moment().format('YYYY', );
+      return this.$moment().format("YYYY");
     }
   }
-}
+};
 </script>
 
 <style lang="scss" scoped>
@@ -28,10 +27,10 @@ export default {
   color: white;
   text-align: center;
   font-weight: 600;
-
 }
-.texto-chico{
-    margin-top: 2px;
+.texto-chico {
+  margin-top: 2px;
   font-size: 0.7rem;
+  color: rgb(245, 214, 214);
 }
 </style>

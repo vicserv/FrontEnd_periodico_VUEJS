@@ -1,29 +1,19 @@
 <template lang="pug">
-NoticiasVue(:direccion="direccion" :titulo="'LO ULTIMO'")
+.contenido
+  LazyMaquetaPrincipales(:direccion="direccion" :titulo="'LO ULTIMO'")
+  LazyMaquetaSecundarias(:direccion="direccion" :titulo="'mas noticias'" :pagina="pagina")
   
 </template>
 
 <script>
-import NoticiasVue from '~/components/maqueta/Noticias.vue'
-
-
 export default {
-  components: {
-    NoticiasVue
-  },
-   data(){
-      return{
-          direccion: `https://panel.deoaxaca.online/noticias?_sort=id:desc&categorias.titulo_eq=${this.$route.params.id}`
-      }
+  data() {
+    return {
+      direccion: `/noticias?_sort=id:desc&categorias.titulo_eq=${this.$route.params.id}`,
+      pagina: 7
+    };
   }
-  
-}
+};
 </script>
 
-<style lang="scss" scoped>
-
-
-
- 
-
-</style>
+<style lang="scss" scoped></style>

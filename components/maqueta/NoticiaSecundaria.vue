@@ -1,7 +1,7 @@
 <template lang="pug">
 .secundarias
     .secundarias__noticias
-        TarjetaNoticiaVue.secundarias__noticias__nota(
+        LazyMaquetaTarjetaNoticia.secundarias__noticias__nota(
                     v-for="(item, index) in noticias" :key="index" 
                     :titulo="item.titulo"
                     :categoria="item.categorias[0].titulo"
@@ -13,105 +13,98 @@
             p.mt-4(v-if='resultados') Llegaste al final
 
     
-    NoticiasLateralVue
+    LazyMaquetaNoticiasLateral
         
     
 </template>
 <script>
-import TarjetaNoticiaVue from './TarjetaNoticia.vue'
-import NoticiasLateralVue from './NoticiasLateral.vue'
-
 export default {
-    
-    components:{
-        TarjetaNoticiaVue,NoticiasLateralVue
-    },
-    props:{
-        noticias: {},
-        resultados: Boolean,
-    },
-    methods:{
-          boton(){
-            this.$emit('accion')
-        }
+  props: {
+    noticias: {},
+    resultados: Boolean
+  },
+  methods: {
+    boton() {
+      this.$emit("accion");
+    }
   }
-    
-    
-}
+};
 </script>
 <style lang="scss" scoped>
-.secundarias{
+.secundarias {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: auto;
+
+  width: 85%;
+  margin: 10px auto;
+  margin-bottom: 40px;
+
+  &__noticias {
     display: grid;
-    grid-template-columns: 1fr;
-    grid-template-rows: auto;
+    grid-template-rows: 1fr 1fr;
+    grid-gap: 1.5rem;
 
-    width: 85%;
-    margin: 10px auto;
-    margin-bottom: 40px;
-   
-    &__noticias{
-        display: grid;
-        grid-template-rows: 1fr 1fr ;
-        grid-gap: 1.5rem;
-        
-        &__nota{
-            min-height: 150px;   
-        }
-
-        &__botoncarga{
-        grid-column-start: 1;
-        grid-column-end: -1;
-        text-align: center;
-        margin-bottom: 20px;
-
-            a{
-            margin: 0 auto;
-            background-color: $color-secundario;
-            color: white;
-            padding: 8px;
-            border-radius: 5px;
-            cursor: pointer;
-            }
-
-            a:hover{
-                background-color: $color-principal;
-            }    
-        }
+    &__nota {
+      min-height: 150px;
     }
+
+    &__botoncarga {
+      grid-column-start: 1;
+      grid-column-end: -1;
+      text-align: center;
+      margin-bottom: 20px;
+
+      a {
+        margin: 0 auto;
+        background-color: $color-secundario;
+        color: white;
+        padding: 8px;
+        border-radius: 5px;
+        cursor: pointer;
+      }
+
+      a:hover {
+        background-color: $color-principal;
+      }
+    }
+  }
 }
 @media (orientation: landscape) {
-.secundarias{
+  .secundarias {
     grid-template-columns: 1fr;
-    &__noticias{
-        display: grid;
-        grid-template-columns:1fr 1fr;
+    &__noticias {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
     }
-    &__lateral{
-        display: none;
+    &__lateral {
+      display: none;
     }
-}    
+  }
 }
-@media  (min-width: 768px){
-.secundarias{
+@media (min-width: 768px) {
+  .secundarias {
     grid-template-columns: 2fr 1fr;
-    &__noticias{
-        display: grid;
-        grid-template-columns:1fr 1fr ;
+    &__noticias {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
     }
-    &__lateral{
-        display: block;
+    &__lateral {
+      display: block;
     }
-}}
+  }
+}
 
-@media  (min-width: 992px){
-.secundarias{
+@media (min-width: 992px) {
+  .secundarias {
     grid-template-columns: 3fr 1fr;
-    &__noticias{
-        display: grid;
-        grid-template-columns:1fr 1fr 1fr;
+    &__noticias {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
     }
-    &__lateral{
-        display: block;
-    }   
-}}
+    &__lateral {
+      display: block;
+    }
+  }
+}
 </style>

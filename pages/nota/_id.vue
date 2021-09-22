@@ -1,196 +1,194 @@
 <template lang="pug">
-.nose
+.nose(@copy="copiar")
   .nota(v-if="noticia.imagen")
     .nota__principal
         .nota__principal__titulo
           h2 {{noticia.titulo}}
         .nota__principal__imagen
-          img(:src="'https://panel.deoaxaca.online' + (!noticia.imagen.formats.small? noticia.imagen.url : noticia.imagen.formats.small.url)")
+          img(:src="'https://panel.deoaxaca.online' + (!noticia.imagen.formats.medium? noticia.imagen.url : noticia.imagen.formats.medium.url)" :alt="noticia.titulo" @contextmenu="hola")
         .nota__principal__cuerpo
           .nota__principal__cuerpo__compartir
             .sticky
-              CompartirVue(:titulo="noticia.titulo" :fecha="format_date(noticia.published_at)" @disminuir="fuente_size(1)" @agrandar="fuente_size(0)")
+              LazyMaquetaCompartir(:titulo="noticia.titulo" :categoria="noticia.categorias[0].titulo || 'DEOAXACA'" :fecha="format_date(noticia.published_at)" @disminuir="fuente_size(1)" @agrandar="fuente_size(0)")
           .markdown(v-html="$md.render(noticia.nota)" :style="`font-size: ${fuente}rem;`")
-    NoticiasLateralVue
-  OtrasVue
+    LazyMaquetaNoticiasLateral
+  LazyMaquetaSecundarias(:direccion="direccion" :titulo="'mas noticias'" :pagina="pagina")
 </template>
 
 <script>
-import markdown from 'markdown-it'
-import axios from 'axios'
-import moment from 'moment'
-import moment_timezone from 'moment-timezone'
-import TitulosVue from '~/components/maqueta/Titulos.vue'
-import CompartirVue from '~/components/maqueta/Compartir.vue'
-import OtrasVue from '~/components/maqueta/Otras.vue'
-import NoticiasLateralVue from '~/components/maqueta/NoticiasLateral.vue'
-
 export default {
-  asyncData(context){
-    const id = context.params.id
+  asyncData(context) {
+    const id = context.params.id;
     return context.$axios
-      .get(`https://panel.deoaxaca.online/noticias/${id}`)
-      .then((res) => {
-        return{ fetchData: res.data}
+      .get(`/noticias/${id}`)
+      .then(res => {
+        return { noticia: res.data };
       })
+      .catch(err => context.error(500));
   },
-    head(){
-      return{
-        title: this.fetchData.titulo,
-           meta: [
-      { charset: 'utf-8' },
-      { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-      {
-        hid: 'description',
-        name: 'description',
-        content: 'De Oaxaca noticias -' + this.fetchData.titulo,
-      },
-          {
-      hid: 'og:type',
-      property: 'og:type',
-      content: 'website'
-    },
-      { hid: 'og:image', property: 'og:image', content: 'https://panel.deoaxaca.online' + (!this.fetchData.imagen.formats.small? this.fetchData.imagen.formats.thumbnail.url : this.fetchData.imagen.formats.small.url) },
-      { hid: 'twitter:card', name: 'twitter:card', content: 'summary_large_image' },
-      
-      {
-          hid: 'twitter:title',
-          name: 'twitter:title',
-          content: this.fetchData.titulo
+  head() {
+    return {
+      title: this.noticia.titulo,
+      meta: [
+        { charset: "utf-8" },
+        { name: "viewport", content: "width=device-width, initial-scale=1" },
+        {
+          hid: "description",
+          name: "description",
+          content: "De Oaxaca noticias -" + this.noticia.titulo
+        },
+        {
+          hid: "og:type",
+          property: "og:type",
+          content: "website"
+        },
+        {
+          hid: "og:image",
+          property: "og:image",
+          content: `https://panel.deoaxaca.online${this.noticia.imagen.url}`
+        },
+        {
+          hid: "twitter:card",
+          name: "twitter:card",
+          content: "summary_large_image"
         },
 
         {
-          hid: 'twitter:description',
-          name: 'twitter:description',
-          content: 'De Oaxaca noticias -' + this.fetchData.titulo,
+          hid: "twitter:title",
+          name: "twitter:title",
+          content: this.noticia.titulo
         },
-      
-      {
-          hid: 'twitter:image',
-          name: 'twitter:image',
-          content: 'https://panel.deoaxaca.online' + (!this.fetchData.imagen.formats.small? this.fetchData.imagen.formats.thumbnail.url : this.fetchData.imagen.formats.small.url) 
-        },
-      
-    ],
-      }
-      
 
+        {
+          hid: "twitter:description",
+          name: "twitter:description",
+          content: "De Oaxaca noticias -" + this.noticia.titulo
+        },
+
+        {
+          hid: "twitter:image",
+          name: "twitter:image",
+          content: `https://panel.deoaxaca.online${this.noticia.imagen.url}`
+        }
+      ]
+    };
   },
-    components:{
-      TitulosVue, CompartirVue, OtrasVue, NoticiasLateralVue
-    },
-     data() {
-    return{
-      noticia: [],
+  data() {
+    return {
       fuente: 1,
+      direccion: "/noticias?_sort=id:desc",
+      pagina: 0
+    };
+  },
+  methods: {
+    format_date(value) {
+      if (value) {
+        return this.$moment(String(value)).format("DD/MM/YYYY h:mm a", "");
+      }
+    },
+    fuente_size(value) {
+      if ((this.fuente < 1.6) & (this.fuente > 0.8)) {
+        if (value === 0) {
+          this.fuente -= 0.1;
+        } else {
+          this.fuente += 0.1;
+        }
+      } else if (this.fuente >= 1.6) {
+        this.fuente -= 0.1;
+        alert("ES EL TAMAÑO MAXIMO");
+      } else if (this.fuente <= 0.8) {
+        this.fuente += 0.1;
+        alert("ES EL TAMAÑO MINIMO");
+      }
+    },
+    copiar(event) {
+      const texto = `\n\nInformación obtenida desde: https://deoaxaca.online${this.$route.fullPath}`;
+      try {
+        event.clipboardData.setData("text", getSelection() + texto);
+        event.preventDefault();
+      } catch (error) {
+        console.log("no se pudo copiar");
+      }
+    },
+    hola(e) {
+      console.log(e);
     }
   },
-  methods: { 
-      format_date(value){
-         if (value) {
-           return moment(String(value)).tz('America/Mexico_City').format('DD/MM/YYYY h:mm a', '')
-          }
-      },
-      fuente_size(value){
-        if(this.fuente < 1.6 & this.fuente > 0.8){
-          if(value === 0){
-          this.fuente -= 0.1
-        }else{
-          this.fuente += 0.1
-        }
-        }else if(this.fuente >= 1.6){
-          this.fuente -= 0.1
-          alert('ES EL TAMAÑO MAXIMO')
-        }else if(this.fuente <= 0.8){
-          this.fuente += 0.1
-          alert('ES EL TAMAÑO MINIMO')
-        }
-        
-      }
-   },
-    async created(){
-      try {
-        const res = await axios.get(`https://panel.deoaxaca.online/noticias/${this.$route.params.id}`) /* AQUI SE HACE LA PETICION GET */
-        
-        this.noticia = res.data;
-        
-        await axios.put(`https://panel.deoaxaca.online/noticias/${this.noticia.id}`, {
-        vistas: this.noticia.vistas + 1})
-      } catch (err) {
-        console.log(err)
-      }
-      
+  async created() {
+    try {
+      await this.$axios.put(`/noticias/${this.noticia.id}`, {
+        vistas: this.noticia.vistas + 1
+      });
+    } catch (err) {
+      console.log(err);
     }
-
-    
-}
+  }
+};
 </script>
 
-
 <style lang="scss" scoped>
-
-.nota{
+.nota {
   width: 85%;
   margin: 0 auto;
-     
-     margin: 0 auto;
 
-    &__principal{
+  margin: 0 auto;
 
-      padding: 0 20px;
-     
-      
-      &__titulo{
-          text-align: center;
-          margin-bottom: 20px;
-          color: rgb(87, 87, 87);
-       }
+  &__principal {
+    padding: 0 20px;
 
-      &__imagen{
-         margin: 0 auto;
-         width: 90%;
-      img{
+    &__titulo {
+      text-align: center;
+      margin-bottom: 20px;
+      color: rgb(87, 87, 87);
+    }
+    &__imagen {
+      margin: 0 auto;
+      width: 90%;
+      img {
         width: 100%;
         height: auto;
         border-radius: 10px;
-        }}
+      }
     }
-
-      
+  }
 }
-@media  (min-width: 992px){
-.nota{
+@media (min-width: 992px) {
+  .nota {
     display: grid;
-      grid-template-rows: 1fr;
-      grid-template-columns: 3fr 1fr;
-    &__principal{
+    grid-template-rows: 1fr;
+    grid-template-columns: 3fr 1fr;
+    &__principal {
       display: grid;
       grid-template-rows: 1fr;
       grid-template-columns: 1fr;
       align-items: center;
 
-                &__cuerpo{
+      &__imagen {
+        margin: 0 auto;
+        width: 70%;
+        img {
+          width: 100%;
+          height: auto;
+          border-radius: 5px;
+        }
+      }
+
+      &__cuerpo {
         display: grid;
         grid-template-columns: auto 1fr;
         margin: 40px 0;
 
-      &__compartir{
-        margin: 0 10px;
-        position: relative;
-        background-color: rgb(247, 247, 247);
-        .sticky{
-
-        position:sticky;
-        top: 50px;
+        &__compartir {
+          margin: 0 10px;
+          position: relative;
+          background-color: rgb(247, 247, 247);
+          .sticky {
+            position: sticky;
+            top: 50px;
+          }
         }
       }
-      }
-
     }
-
-
+  }
 }
-}
-
-
 </style>
