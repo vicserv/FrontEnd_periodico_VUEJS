@@ -15,7 +15,7 @@ export default {
     categoria: String,
     imagen: String,
     fecha: String,
-    url: String
+    url: String,
   },
   methods: {
     dia(value) {
@@ -27,8 +27,8 @@ export default {
       if (value) {
         return this.$moment(String(value)).format("MM/YY", "");
       }
-    }
-  }
+    },
+  },
 };
 </script>
 <style lang="scss" scoped>

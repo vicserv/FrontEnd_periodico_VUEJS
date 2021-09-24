@@ -9,7 +9,7 @@ export default {
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
       { hid: 'description', name: 'description', content: 'DE OAXACA NOTICIAS - DIARIO ESTATAL, Con las últimas noticias de Oaxaca, Mexico y el mundo actualizadas al momento' },
-      { hid: 'og:image', property: 'og:image', content: '/deoaxaca.png'}
+      { hid: 'og:image', property: 'og:image', content: '/deoaxaca.jpg'}
     ],
     link: [
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },

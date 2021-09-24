@@ -1,7 +1,7 @@
-version: "3.9"
+version: "3.3"
 services:
   web:
-    container_name: front_deoaxaca
+    container_name: deoaxaca_frontend
     build: .
     ports:
       - "5000:5000"

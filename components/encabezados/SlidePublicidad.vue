@@ -28,19 +28,19 @@ export default {
         cssEase: "linear",
         pauseOnDotsHover: true,
         pauseOnFocus: true,
-        pauseOnHover: true
-      }
+        pauseOnHover: true,
+      },
     };
   },
   components: {
-    VueSlickCarousel
+    VueSlickCarousel,
   },
   async created() {
     await this.$axios
       .get(`/publicidads/`)
-      .then(res => (this.imagenes = res.data))
-      .catch(res => (this.imagenes = []));
-  }
+      .then((res) => (this.imagenes = res.data))
+      .catch((res) => (this.imagenes = []));
+  },
 };
 </script>
 

@@ -19,7 +19,7 @@ import { Slider, SliderItem } from "vue-easy-slider";
 export default {
   components: {
     Slider,
-    SliderItem
+    SliderItem,
   },
   props: ["principales"],
   data() {
@@ -38,8 +38,8 @@ export default {
       if (value) {
         return this.$moment(String(value)).format("MM/YY", "");
       }
-    }
-  }
+    },
+  },
 };
 </script>
 

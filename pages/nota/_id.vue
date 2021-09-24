@@ -21,10 +21,10 @@ export default {
     const id = context.params.id;
     return context.$axios
       .get(`/noticias/${id}`)
-      .then(res => {
+      .then((res) => {
         return { noticia: res.data };
       })
-      .catch(err => context.error(500));
+      .catch((err) => context.error(500));
   },
   head() {
     return {
@@ -35,49 +35,57 @@ export default {
         {
           hid: "description",
           name: "description",
-          content: "De Oaxaca noticias -" + this.noticia.titulo
+          content: "De Oaxaca noticias -" + this.noticia.titulo,
         },
         {
           hid: "og:type",
           property: "og:type",
-          content: "website"
+          content: "website",
         },
         {
           hid: "og:image",
           property: "og:image",
-          content: `https://panel.deoaxaca.online${this.noticia.imagen.url}`
+          content: `https://panel.deoaxaca.online${
+            this.noticia.imagen.formats.medium
+              ? this.noticia.imagen.formats.medium.url
+              : this.noticia.imagen.url
+          }`,
         },
         {
           hid: "twitter:card",
           name: "twitter:card",
-          content: "summary_large_image"
+          content: "summary_large_image",
         },
 
         {
           hid: "twitter:title",
           name: "twitter:title",
-          content: this.noticia.titulo
+          content: this.noticia.titulo,
         },
 
         {
           hid: "twitter:description",
           name: "twitter:description",
-          content: "De Oaxaca noticias -" + this.noticia.titulo
+          content: "De Oaxaca noticias -" + this.noticia.titulo,
         },
 
         {
           hid: "twitter:image",
           name: "twitter:image",
-          content: `https://panel.deoaxaca.online${this.noticia.imagen.url}`
-        }
-      ]
+          content: `https://panel.deoaxaca.online${
+            this.noticia.imagen.formats.medium
+              ? this.noticia.imagen.formats.medium.url
+              : this.noticia.imagen.url
+          }`,
+        },
+      ],
     };
   },
   data() {
     return {
       fuente: 1,
       direccion: "/noticias?_sort=id:desc",
-      pagina: 0
+      pagina: 0,
     };
   },
   methods: {
@@ -112,17 +120,17 @@ export default {
     },
     hola(e) {
       console.log(e);
-    }
+    },
   },
   async created() {
     try {
       await this.$axios.put(`/noticias/${this.noticia.id}`, {
-        vistas: this.noticia.vistas + 1
+        vistas: this.noticia.vistas + 1,
       });
     } catch (err) {
       console.log(err);
     }
-  }
+  },
 };
 </script>
 

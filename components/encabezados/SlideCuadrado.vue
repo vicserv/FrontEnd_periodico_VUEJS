@@ -29,19 +29,19 @@ export default {
         fade: true,
         pauseOnDotsHover: true,
         pauseOnFocus: true,
-        pauseOnHover: true
-      }
+        pauseOnHover: true,
+      },
     };
   },
   components: {
-    VueSlickCarousel
+    VueSlickCarousel,
   },
   async created() {
     await this.$axios
       .get("/cuadrados/")
-      .then(res => (this.imagenes = res.data))
-      .catch(err => console.log(err));
-  }
+      .then((res) => (this.imagenes = res.data))
+      .catch((err) => console.log(err));
+  },
 };
 </script>
 
