@@ -1,4 +1,5 @@
 <template lang="pug">
+client-only
   .hola
       VueSlickCarousel.carousel(v-bind="settings" v-if="imagenes.length" )
           div.carousel__item( v-for="(item, index) in imagenes" :key="index")
