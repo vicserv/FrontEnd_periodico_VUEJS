@@ -28,12 +28,7 @@ export default {
   },
   methods: {
     async obtenerDatos() {
-      const respuesta = await this.$axios.get(this.url).catch(res =>
-        this.$nuxt.error({
-          statusCode: res.status,
-          message: "Post not found"
-        })
-      );
+      const respuesta = await this.$axios.get(this.url)
       this.noticias = respuesta.data;
     },
 

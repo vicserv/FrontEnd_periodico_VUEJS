@@ -19,10 +19,7 @@ export default {
 
   async created() {
     const principales = await this.$axios
-      .get(`${this.direccion}&_start=0&_limit=7`)
-      .catch(res =>
-        this.$nuxt.error({ statusCode: res.status, message: "Post not found" })
-      );
+      .get(`${this.direccion}&_start=0&_limit=7`);
     this.principales = principales.data;
   }
 };

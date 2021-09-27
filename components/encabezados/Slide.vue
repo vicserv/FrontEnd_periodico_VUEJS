@@ -25,9 +25,9 @@ export default {
   async created() {
     await this.$axios
       .get(
-        "https://api.openweathermap.org/data/2.5/find?lat=17.05&lon=-96.72&cnt=45&appid=ff924bb4ff1f001f04bd640f8a7efa47"
+        "https://api.openweathermap.org/data/2.5/find?lat=17.05&lon=-96.72&cnt=45&appid=ff924bb4ff1f001f04bd640f8a7efa47" 
       )
-      .then(res => (this.clima = res.data.list));
+      .then(res => (this.clima = res.data.list)).then(this.count()).catch(res => (this.clima = []));
 
     this.count();
   }

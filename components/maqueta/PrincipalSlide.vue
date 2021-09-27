@@ -4,7 +4,7 @@ client-only
     Slider-item( 
         v-for="(item, index) in principales"
         :key="index"
-        :lazy-background="`https://panel.deoaxaca.online${!item.imagen.formats.small? item.imagen.url : item.imagen.formats.small.url}`"
+        :style="{'background-image': `url(https://panel.deoaxaca.online${!item.imagen.formats.small? item.imagen.url : item.imagen.formats.small.url})`}"
 )
       router-link.tarjeta__titulo(:to="'/nota/'+ item.slug") {{item.titulo}}
       .tarjeta__fecha

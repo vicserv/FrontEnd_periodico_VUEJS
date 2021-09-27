@@ -65,7 +65,6 @@ export default {
     '@nuxtjs/style-resources',
     '@nuxtjs/markdownit',
     'vue-social-sharing/nuxt',
-    'nuxt-lazy-load',
     '@nuxtjs/moment',
   ],
   moment: {

@@ -24,7 +24,7 @@ export default {
       .then((res) => {
         return { noticia: res.data };
       })
-      .catch((err) => context.error(500));
+      .catch(err => context.redirect('/'));
   },
   head() {
     return {

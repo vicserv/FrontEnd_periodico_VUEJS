@@ -1,6 +1,7 @@
 <template lang="pug">
 
-.tarjeta(:lazy-background="`https://panel.deoaxaca.online${imagen}`")
+.tarjeta(
+  :style="{'background-image': `url(https://panel.deoaxaca.online${imagen})`}")
     router-link.tarjeta__titulo(:to="'/nota/'+ url")
       p {{titulo}}
     .tarjeta__fecha 

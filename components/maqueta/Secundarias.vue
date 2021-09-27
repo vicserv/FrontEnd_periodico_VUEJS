@@ -21,10 +21,7 @@ export default {
 
   async created() {
     const noticias = await this.$axios
-      .get(`${this.direccion}&_start=${this.pagina}&_limit=15`)
-      .catch(res =>
-        this.$nuxt.error({ statusCode: res.status, message: "Post not found" })
-      );
+      .get(`${this.direccion}&_start=${this.pagina}&_limit=15`);
     this.noticias = noticias.data;
   },
   methods: {
@@ -39,9 +36,6 @@ export default {
           } else {
             this.resultados = true;
           }
-        })
-        .catch(err => {
-          console.log(err);
         });
     }
   }
